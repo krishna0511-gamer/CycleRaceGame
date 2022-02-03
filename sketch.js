@@ -123,7 +123,10 @@ function draw() {
 }else if (gameState === END) {
     gameOver.visible = true;
     //Add code to show restart game instrution in text here
-  
+    
+    textSize(20);
+    fill(255);
+    text("Press Up Arrow to Restart the game!", 500,200);
   
     path.velocityX = 0;
     mainCyclist.velocityY = 0;
@@ -139,6 +142,9 @@ function draw() {
     redCG.setLifetimeEach(-1);
 
     //write condition for calling reset( )
+    if(keyDown("UP_ARROW")) {
+      reset();
+    }
 }
 }
 
@@ -170,9 +176,14 @@ function redCyclists(){
 }
 
 //create reset function here
-
-
-
-
-
-
+function reset(){
+  gameState = PLAY;
+  gameOver.visible = false;
+  mainCyclist.addAnimation("SahilRunning",mainRacerImg1);
+  
+  pinkCG.destroyEach();
+  yellowCG.destroyEach();
+  redCG.destroyEach();
+  
+  distance = 0;
+}
